@@ -1,6 +1,8 @@
 NotesApp::Application.routes.draw do
 
-  resources :users, only: [:new, :create, :edit, :index, :show, :update]
+  resources :users, only: [:index, :create, :show, :update, :destroy]
+  resources :folders, only: [:index, :create, :show, :update, :destroy]
+  resources :notes, only: [:index, :create, :show, :update, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(:version => 20220314102013) do
   create_table "folders", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "notes_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -36,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20220314102013) do
     t.string   "salt"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
-    t.integer  "folder_id"
   end
 
 end
