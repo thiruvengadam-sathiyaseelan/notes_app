@@ -81,6 +81,10 @@ GEM
       activesupport (= 3.2.0)
       bundler (~> 1.0)
       railties (= 3.2.0)
+    rails-api (0.0.2)
+      actionpack (>= 3.2.0)
+      railties (>= 3.2.0)
+      tzinfo (~> 0.3.31)
     railties (3.2.0)
       actionpack (= 3.2.0)
       activesupport (= 3.2.0)
@@ -126,6 +130,7 @@ DEPENDENCIES
   mysql2 (= 0.3.21)
   pry-rails
   rails (= 3.2.0)
+  rails-api (= 0.0.2)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
 
