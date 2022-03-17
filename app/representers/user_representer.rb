@@ -3,12 +3,13 @@ class UserRepresenter
     @user = user
   end
 
-  def as_json
+  def to_json
     {
       id: user.id,
       name: user.name,
       email: user.email,
-      created: user.created_at
+      created: user.created_at,
+      folders: FoldersRepresenter.new(user.folders).to_compact_json
     }
   end
 

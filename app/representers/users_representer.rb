@@ -5,13 +5,14 @@ class UsersRepresenter
     @users = users
   end
 
-  def as_json
+  def to_json
     users.map do |user|
     {
       id: user.id,
       name: user.name,
       email: user.email,
-      created: user.created_at
+      created: user.created_at,
+      folders: FoldersRepresenter.new(user.folders).to_compact_json
     }
     end
   end

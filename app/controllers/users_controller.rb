@@ -1,15 +1,20 @@
 class UsersController < ApplicationController
-
   # GET /users
   def index
+    check_session_and_raise
     @users = User.all
-    render json: UsersRepresenter.new(@users).as_json
+    render json: UsersRepresenter.new(@users).to_json
   end
 
   # GET /user/:id
   def show
+    check_session_and_raise
     @user = User.find(params[:id])
-    render json: @user
+    if @user
+      render json: UserRepresenter.new(@user).to_json, status: 200
+    else
+      render json: @user.errors, status: :not_found
+    end
   end
 
   # POST /users
@@ -17,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # binding.pry
-      render json: UserRepresenter.new(@user).as_json, status: :created
+      render json: UserRepresenter.new(@user).to_json, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -25,9 +30,11 @@ class UsersController < ApplicationController
 
   # PUT /users/:id
   def update
+    check_session_and_raise
+    check_access
     @user = User.find(params[:id])
     if @user
-      @user.update(user_params)
+      @user.update_attributes(:name =>user_params[:name], :password =>user_params[:password])
       render json: {message: 'User successfully updated.'}, status: 200
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -35,9 +42,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    check_session_and_raise
+    check_access
     @user = User.find(params[:id])
     if @user
       @user.destroy
+      sign_out
       render json: {message: 'User deleted successfully.'}, status: 200
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -47,6 +57,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.slice(:id, :name, :email, :password)
-    #params.require(:user).permit(:email, :password )
+  end
+
+  def check_access
+    if current_user != params[:id]
+      raise ActionController::InvalidAuthenticityToken.new("Invalid access!")
+    end
   end
 end
