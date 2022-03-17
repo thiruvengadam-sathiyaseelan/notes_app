@@ -21,7 +21,8 @@ class FoldersController < ApplicationController
   def create
     check_session_and_raise
     @folder = Folder.new(folder_params)
-    @folder.user_id = current_user
+    @folder.user_id = current_user.id
+    binding.pry
     if @folder.save
       render json: FolderRepresenter.new(@folder).to_json, status: :created
     else

@@ -2,7 +2,7 @@ NotesApp::Application.routes.draw do
 
   resources :users, only: [:create, :show, :update, :destroy]
   resources :folders, only: [:index, :create, :show, :update, :destroy]
-  resources :notes, only: [:create, :show, :update, :destroy]
+  resources :notes, only: [:index, :create, :show, :update, :destroy]
   resources :sessions, only: [:create, :destroy]
 
   match '/signin', :to => 'sessions#create'
