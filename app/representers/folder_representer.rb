@@ -5,7 +5,6 @@ class FolderRepresenter
   end
 
   def to_json
-    binding.pry
     {
       id: folder.id,
       name: folder.name,
