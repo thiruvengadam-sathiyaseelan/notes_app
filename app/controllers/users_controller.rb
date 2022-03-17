@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   # GET /user/:id
   def show
     check_session_and_raise
+    check_access
     @user = User.find(params[:id])
     if @user
       render json: UserRepresenter.new(@user).to_json, status: 200
@@ -60,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def check_access
-    if current_user != params[:id]
+    if current_user.id.to_s != params[:id]
       raise ActionController::InvalidAuthenticityToken.new("Invalid access!")
     end
   end

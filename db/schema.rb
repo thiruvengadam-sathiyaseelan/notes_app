@@ -14,25 +14,25 @@
 ActiveRecord::Schema.define(:version => 20220314102013) do
 
   create_table "folders", :force => true do |t|
-    t.string   "name"
-    t.integer  "user_id"
+    t.string   "name",       :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "notes", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.string   "content"
-    t.integer  "folder_id"
+    t.integer  "folder_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "encrypted_password"
-    t.string   "salt"
+    t.string   "name",               :null => false
+    t.string   "email",              :null => false
+    t.string   "encrypted_password", :null => false
+    t.string   "salt",               :null => false
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
