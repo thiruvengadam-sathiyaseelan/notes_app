@@ -10,8 +10,8 @@ class FoldersController < ApplicationController
 
   def show
     check_session_and_raise
-    @folder = Folder.where(:id => params[:id], :user_id => current_user)
-    if !@folder.nil? && @folder.length > 0
+    @folder = Folder.where(:id => params[:id], :user_id => current_user).first
+    if !@folder.nil?
       render json: FolderRepresenter.new(@folder).to_json, status: 200
     else
       render json: { "error" => "No record found" }, status: :not_found
@@ -21,10 +21,31 @@ class FoldersController < ApplicationController
   def create
     check_session_and_raise
     @folder = Folder.new(folder_params)
+    @folder.user_id = current_user
     if @folder.save
       render json: FolderRepresenter.new(@folder).to_json, status: :created
     else
       render json: @folder.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @folder = Folder.where(:id => params[:id], :user_id => current_user).first
+    if !@folder.nil?
+      @folder.update_attributes(:name => params[:name])
+      render json: {message: 'Folder successfully updated.'}, status: 200
+    else
+      render json: { "error" => "No record found" }, status: :not_found
+    end
+  end
+
+  def destroy
+    @folder = Folder.where(:id => params[:id], :user_id => current_user).first
+    if !@folder.nil?
+      @folder.destroy
+      render json: {message: 'Folder deleted.'}, status: 200
+    else
+      render json: { "error" => "No record found" }, status: :not_found
     end
   end
 

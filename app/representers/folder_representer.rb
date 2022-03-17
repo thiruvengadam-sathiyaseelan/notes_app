@@ -10,7 +10,7 @@ class FolderRepresenter
       id: folder.id,
       name: folder.name,
       user_id: folder.user_id,
-      include: [:notes]
+      notes: NotesRepresenter.new(folder.notes).to_compact_json
     }
   end
 
