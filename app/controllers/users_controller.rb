@@ -1,4 +1,7 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController #  < ActionController::API
+
+  # skip_before_filter: check_session_and_raise
+
   # GET /users
   def index
     check_session_and_raise

@@ -16,3 +16,5 @@ class FolderRepresenter
   private
   attr_reader :folder
 end
+
+# migrate it to AMS https://github.com/rails-api/active_model_serializers

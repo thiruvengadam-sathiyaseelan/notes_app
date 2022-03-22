@@ -15,9 +15,15 @@ module SessionsHelper
   end
 
   def check_session_and_raise
-    if !signed_in?
-      raise ActionController::InvalidAuthenticityToken.new("Invalid session!")
-    end
+    # if !signed_in?
+    #   raise ActionController::InvalidAuthenticityToken.new("Invalid session!")
+    # end
+    #
+    # unless signed_in?
+    #   raise ActionController::InvalidAuthenticityToken.new("Invalid session!")
+    # end
+
+    raise ActionController::InvalidAuthenticityToken.new("Invalid session!") unless signed_in?
   end
 
   def current_user=(user)

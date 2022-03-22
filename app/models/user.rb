@@ -45,3 +45,5 @@ class User < ActiveRecord::Base
     Digest::SHA2.hexdigest(string)
   end
 end
+
+# i18n - add language as a field and error message should be based on that

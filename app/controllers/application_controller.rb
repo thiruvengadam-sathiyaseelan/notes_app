@@ -5,4 +5,9 @@ class ApplicationController < ActionController::API
   include ::SessionsHelper
   include ActionController::Cookies
 
+  # before_filter check_session_and_raise, proc: , skip
+
 end
+
+
+# module, concern

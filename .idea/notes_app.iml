@@ -64,6 +64,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rack-ssl (v1.3.4, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.6.3, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v3.2.0, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-api (v0.0.2, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.2.0, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.1, RVM: ruby-2.3.7 [rails3.2]) [gem]" level="application" />

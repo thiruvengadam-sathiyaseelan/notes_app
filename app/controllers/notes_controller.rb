@@ -1,6 +1,9 @@
 
 class NotesController < ApplicationController
 
+  # before_filter :load_folder, skip: [index] # skip, only
+
+
   def index
     check_session_and_raise
     @current_user = current_user
@@ -18,6 +21,7 @@ class NotesController < ApplicationController
     else
       render json: { "error" => "No record found" }, status: :not_found
     end
+    # render json: NoteRepresenter.new(@note).to_json, status: 200
   end
 
   def create
@@ -70,5 +74,11 @@ class NotesController < ApplicationController
   def note_params
     params.slice(:id, :name, :content, :folder_id)
   end
+
+  # def load_folder
+  #   check_session_and_raise
+  #   @note = Note.joins(folder: :user).where(users: {id: @current_user.id}, notes: {id: params[:id]}).first
+  #   render json: NoteRepresenter.new(@note).to_json, status: 200 unless note.nil?
+  # end
 
 end

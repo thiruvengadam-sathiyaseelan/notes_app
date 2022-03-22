@@ -3,14 +3,15 @@ class FoldersController < ApplicationController
   def index
     check_session_and_raise
     @folders = Folder.where(:user_id => current_user.id)
-    if !@folders.nil? && @folders.length > 0
+    if !@folders.nil? && @folders.length > 0 # @folders.present?, .blank? -> "", [], nil
       render json: FoldersRepresenter.new(@folders).to_json, status: 200
     end
   end
 
   def show
     check_session_and_raise
-    @folder = Folder.where(:id => params[:id], :user_id => current_user.id).first
+    # current_user.folders.find_by_id(params[:id])
+    @folder = Folder.where(id: params[:id], user_id: current_user.id).first
     if !@folder.nil?
       render json: FolderRepresenter.new(@folder).to_json, status: 200
     else
@@ -18,11 +19,14 @@ class FoldersController < ApplicationController
     end
   end
 
+  # 'No record found' -> i18n
+
   def create
     check_session_and_raise
-    @folder = Folder.new(folder_params)
+    # folder_params[user_id] = current_user.id
+    @folder = Folder.new(folder_params) # .merge(user_id: current_user.id)
     @folder.user_id = current_user.id
-    if @folder.save
+    if @folder.save # .save! difference
       render json: FolderRepresenter.new(@folder).to_json, status: :created
     else
       render json: @folder.errors, status: :unprocessable_entity
@@ -30,7 +34,7 @@ class FoldersController < ApplicationController
   end
 
   def update
-    @folder = Folder.where(:id => params[:id], :user_id => current_user.id).first
+    @folder = Folder.where(:id => params[:id], :user_id => current_user.id).first # diff between where and find
     if !@folder.nil?
       @folder.update_attributes(:name => params[:name])
       render json: {message: 'Folder successfully updated.'}, status: 200
@@ -42,7 +46,7 @@ class FoldersController < ApplicationController
   def destroy
     @folder = Folder.where(:id => params[:id], :user_id => current_user.id).first
     if !@folder.nil?
-      @folder.destroy
+      @folder.destroy # .destroy!
       render json: {message: 'Folder deleted.'}, status: 200
     else
       render json: { "error" => "No record found" }, status: :not_found
