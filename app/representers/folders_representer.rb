@@ -8,9 +8,7 @@ class FoldersRepresenter
     folders.map do |folder|
       {
         id: folder.id,
-        name: folder.name,
-        user_id: folder.user_id,
-        notes: NotesRepresenter.new(folder.notes).to_compact_json
+        name: folder.name
       }
     end
   end

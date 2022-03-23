@@ -9,6 +9,8 @@ gem 'mysql2', '0.3.21'
 
 gem 'rails-api', '0.0.2'
 
+gem 'rails-i18n', '0.7.4'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

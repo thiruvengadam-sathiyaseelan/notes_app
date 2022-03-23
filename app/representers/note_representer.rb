@@ -8,8 +8,7 @@ class NoteRepresenter
     {
       id: note.id,
       name: note.name,
-      content: note.content,
-      folder_id: note.folder_id
+      content: note.content
     }
   end
 

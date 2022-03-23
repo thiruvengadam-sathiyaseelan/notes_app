@@ -2,4 +2,23 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  common:
+    not_found: "Record not found"
+  session:
+    signed_in: "User successfully signed-in."
+    signed_out: "User successfully signed-out."
+    invalid_credential: "Invalid credential!"
+  user:
+    invalid_access: "Invalid access!"
+    updated: "User successfully updated."
+    deleted: "User deleted successfully."
+  folder:
+    not_found: "Record not found"
+    updated: "Folder updated successfully"
+    deleted: "Folder deleted successfully"
+  note:
+    not_found: "Record not found"
+    invalid_folder: "Invalid target folder"
+    updated: "Note successfully updated."
+    deleted: "Note deleted!"
+
