@@ -39,8 +39,8 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.present?
-      @user.destroy
       sign_out
+      @user.destroy
       render json: {message: I18n.t(:deleted, scope: [:user])}, status: 200
     else
       render json: @user.errors, status: :unprocessable_entity

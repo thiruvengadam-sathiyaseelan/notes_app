@@ -1,7 +1,7 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-  has_many :folders, dependent: :delete_all
+  has_many :folders, inverse_of: :user, dependent: :delete_all
   attr_accessor :password
   attr_accessible :name, :email, :password
 

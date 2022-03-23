@@ -1,6 +1,6 @@
 class Folder < ActiveRecord::Base
-  belongs_to :user
-  has_many :notes, dependent: :delete_all # destroy
+  belongs_to :user, inverse_of: :folders
+  has_many :notes, inverse_of: :folder, dependent: :delete_all # destroy
 
   validates :name, :presence => true, :length => { :minimum => 2, :maximum => 50 }
 end
